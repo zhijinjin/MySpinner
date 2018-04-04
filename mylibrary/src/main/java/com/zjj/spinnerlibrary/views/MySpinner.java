@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zjj.spinnerlibrary.R;
 import com.zjj.spinnerlibrary.adapter.SpinnerAdapter;
@@ -36,9 +37,12 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
     private Context context;
     private int interval=200;
     private SpinnerAdapter adapter;
+    //单选选中位置
     private int selectPosition =-1;
     private List<SpinnerModel> mData;
     private LayoutInflater inflater;
+    //默认样式
+    private View contentView;
 
     public MySpinner(Context context) {
         this(context, null);
@@ -68,22 +72,46 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         }
     }
 
+    /**
+     * 设置单选，多选
+     * @param style
+     */
     public void setStyle(int style){
         mStyle = style;
         adapter.setType(mStyle);
     }
 
+    /**
+     * 设置数据
+     * @param mData
+     */
     public void setData(List<SpinnerModel>  mData){
         this.mData = mData;
         adapter.setList(mData);
     }
 
+    /**
+     * 设置样式
+     * @param contentView
+     */
+    public void setContentView(View contentView){
+        this.contentView = contentView;
+    }
+
+   public void dismiss(){
+        if (mPopup!=null&&mPopup.isShowing()){
+            mPopup.dismiss();
+        }
+   }
+
     @Override
     public void onClick(View view) {
         if(mPopup==null){
-            View convertView = inflater.inflate(R.layout.spinner_layout, null);
-            initConverView(convertView);
-            mPopup =  new PopupWindow(convertView, this.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT);
+            if(contentView==null){//默认样式
+                contentView = inflater.inflate(R.layout.spinner_layout, null);
+                initConverView(contentView);
+            }
+            mPopup =  new PopupWindow(contentView, this.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT);
             mPopup.setBackgroundDrawable(new BitmapDrawable());
             mPopup.setFocusable(true);
             mPopup.setOutsideTouchable(true);
@@ -104,6 +132,10 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         }
     }
 
+    /**
+     * 初始化默认弹框
+     * @param convertView
+     */
     private void initConverView(View convertView){
         mList = (ListView) convertView.findViewById(R.id.listview_sp);
         LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.ll);
@@ -164,6 +196,10 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         }
     }
 
+    /**
+     * 获取选中数据
+     * @return
+     */
     public List<SpinnerModel> getSelectData(){
         List<SpinnerModel> selectList = new ArrayList<SpinnerModel>();
         switch (mStyle){
@@ -177,6 +213,10 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         return selectList;
     }
 
+    /**
+     * 设置默认选中的位置
+     * @param posi
+     */
     public void setSelectPositons(int[] posi){
         clearSelect();
         switch (mStyle){
@@ -194,6 +234,9 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         }
     }
 
+    /**
+     * 清除选中的
+     */
     public void clearSelect(){
         selectPosition = -1;
         for(SpinnerModel model:mData){
