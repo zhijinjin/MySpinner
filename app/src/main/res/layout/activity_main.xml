@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zjj.myspinner.MainActivity">
+
+    <com.zjj.spinnerlibrary.views.MySpinner
+        android:id="@+id/sp_1"
+        android:layout_width="260dp"
+        android:paddingRight="4dp"
+        android:drawableRight="@drawable/bg_zk_item"
+        android:background="@drawable/bg_null"
+        android:text="下拉，单选"
+        app:spinner_style="STYLE_SINGLE"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_height="55dp" />
+
+    <com.zjj.spinnerlibrary.views.MySpinner
+        android:layout_marginTop="20dp"
+        android:id="@+id/sp_2"
+        android:layout_width="260dp"
+        android:paddingRight="4dp"
+        android:drawableRight="@drawable/bg_zk_item"
+        android:background="@drawable/bg_null"
+        android:text="下拉，多选"
+        app:spinner_style="STYLE_MULTI"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_height="55dp" />
+
+</LinearLayout>
