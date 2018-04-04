@@ -1,5 +1,6 @@
 # MySpinner
 支持单选和多选的 下拉菜单
+![img](http://recordit.co/WaRCQ9YCLy) 
 
 Add it in your root build.gradle at the end of repositories:
 
