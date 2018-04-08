@@ -45,4 +45,22 @@
         android:gravity="center"
         android:layout_height="55dp" />
 
+    <com.zjj.spinnerlibrary.views.MySpinner
+        android:layout_marginTop="20dp"
+        android:id="@+id/sp_4"
+        android:layout_width="260dp"
+        android:paddingRight="4dp"
+        android:drawableRight="@drawable/bg_zk_item"
+        android:background="@drawable/bg_null"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_height="55dp"
+        android:text="自定义弹框"
+        app:spinner_pop_background_color="@color/colorAccent"
+        app:spinner_pop__divider_color="@color/colorPrimary"
+        app:spinner_pop__divider_height="1"
+        app:spinner_style="STYLE_MULTI"/>
+
+
+
 </LinearLayout>

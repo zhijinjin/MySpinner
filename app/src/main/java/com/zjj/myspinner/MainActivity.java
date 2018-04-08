@@ -17,23 +17,34 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MySpinner sp_1,sp_2,sp_3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sp_1 = (MySpinner)findViewById(R.id.sp_1);
+        //默认单选样式
+        MySpinner sp_1 = (MySpinner)findViewById(R.id.sp_1);
         sp_1.setData(getData());
-        //默认选中单选
         sp_1.setSelectPositons(new int[]{1});
 
-        sp_2 = (MySpinner)findViewById(R.id.sp_2);
+        //默认多选样式
+        MySpinner sp_2 = (MySpinner)findViewById(R.id.sp_2);
         sp_2.setData(getData());
-        //默认选中多选
         sp_2.setSelectPositons(new int[]{1,2});
 
-        sp_3 = (MySpinner)findViewById(R.id.sp_3);
+        //自定义弹框样式
+        MySpinner sp_3 = (MySpinner)findViewById(R.id.sp_3);
+        userDefined(sp_3);
+
+        MySpinner sp_4 = (MySpinner)findViewById(R.id.sp_4);
+        sp_4.setData(getData());
+    }
+
+
+
+
+    //自定义弹框样式
+    private void userDefined(final MySpinner sp_3){
         View contentView = LayoutInflater.from(this).inflate(R.layout.spinner3_layout, null);
         sp_3.setContentView(contentView);
         final MyAdapter adapter = new MyAdapter(this,getData());

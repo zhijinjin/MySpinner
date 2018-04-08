@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MySpinner">
+        <attr name="spinner_pop_background_color" format="color" />
+        <attr name="spinner_pop__divider_color" format="color" />
+        <attr name="spinner_pop__divider_height" format="integer" />
         <attr name="spinner_radius" format="dimension" />
-        <attr name="spinner_background_color" format="color" />
         <attr name="spinner_text_color" format="color" />
-        <attr name="spinner_cover_color" format="color" />
         <attr name="spinner_width" format="dimension" />
+        <attr name="spinner_height" format="dimension" />
         <attr name="spinner_style" format="enum">
             <enum name="STYLE_SINGLE" value="1" />
             <enum name="STYLE_MULTI" value="2" />

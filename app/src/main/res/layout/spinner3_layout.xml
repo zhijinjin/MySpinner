@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/bg_spinner" >
+    android:background="@drawable/bg_spinner3" >
 
     <ListView
         android:id="@+id/listview_sp"

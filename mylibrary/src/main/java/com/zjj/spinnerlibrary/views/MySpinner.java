@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,6 +47,13 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
     private LayoutInflater inflater;
     //默认样式
     private View contentView;
+    private int confirmTextSize;
+    //pop背景
+    private int spinner_pop_background_color;
+    //Item分割线颜色
+    private int divider_color;
+    //分割线高度 dp
+    private int divider_height;
 
     public MySpinner(Context context) {
         this(context, null);
@@ -67,6 +78,9 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MySpinner);
         try {
             mStyle = a.getInt(R.styleable.MySpinner_spinner_style, TYPE_SINGLE);
+            spinner_pop_background_color = a.getColor(R.styleable.MySpinner_spinner_pop_background_color , getResources().getColor(R.color.pop_bag));
+            divider_color = a.getColor(R.styleable.MySpinner_spinner_pop__divider_color , 0);
+            divider_height = a.getInt(R.styleable.MySpinner_spinner_pop__divider_height , 1);
         } finally {
             a.recycle();
         }
@@ -76,26 +90,29 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
      * 设置单选，多选
      * @param style
      */
-    public void setStyle(int style){
+    public MySpinner setStyle(int style){
         mStyle = style;
         adapter.setType(mStyle);
+        return this;
     }
 
     /**
      * 设置数据
      * @param mData
      */
-    public void setData(List<SpinnerModel>  mData){
+    public MySpinner setData(List<SpinnerModel>  mData){
         this.mData = mData;
         adapter.setList(mData);
+        return this;
     }
 
     /**
      * 设置样式
      * @param contentView
      */
-    public void setContentView(View contentView){
+    public MySpinner setContentView(View contentView){
         this.contentView = contentView;
+        return this;
     }
 
    public void dismiss(){
@@ -137,6 +154,8 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
      * @param convertView
      */
     private void initConverView(View convertView){
+        GradientDrawable background = (GradientDrawable) convertView.getBackground();
+        background.setColor(spinner_pop_background_color);
         mList = (ListView) convertView.findViewById(R.id.listview_sp);
         LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.ll);
         if(mStyle==TYPE_SINGLE){
@@ -157,9 +176,15 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
             });
         }
         mList.setCacheColorHint(Color.parseColor("#00000000"));
-        mList.setDivider(getResources().getDrawable(R.drawable.panel_divider));
+
+        if(divider_color==0){
+            mList.setDivider(getResources().getDrawable(R.drawable.panel_divider));
+        }else{
+            mList.setDivider(new ColorDrawable(divider_color));
+            mList.setDividerHeight(dp2px(context,divider_height));
+        }
+
         mList.setAdapter(adapter);
-//        mList.setSelector(R.drawable.menu_selector);
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -217,21 +242,27 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
      * 设置默认选中的位置
      * @param posi
      */
-    public void setSelectPositons(int[] posi){
+    public MySpinner setSelectPositons(int[] posi){
         clearSelect();
         switch (mStyle){
             case TYPE_MULTI:
                 for(int i=0;i<posi.length;i++){
-                    mData.get(posi[i]).setSelectd(true);
+                    int position = posi[i];
+                    if(position<mData.size()){
+                        mData.get(position).setSelectd(true);
+                    }
                 }
                 onSure();
                 adapter.notifyDataSetChanged();
                 break;
             case TYPE_SINGLE:
                 selectPosition = posi[0];
-                this.setText(mData.get(selectPosition).getValue());
+                if(selectPosition<mData.size()){{
+                    this.setText(mData.get(selectPosition).getValue());
+                }}
                 break;
         }
+        return this;
     }
 
     /**
@@ -244,4 +275,8 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         }
     }
 
+    private int dp2px(Context context,float dpValue){
+        float scale=context.getResources().getDisplayMetrics().density;
+        return (int)(dpValue*scale+0.5f);
+    }
 }
