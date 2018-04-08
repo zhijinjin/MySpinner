@@ -59,7 +59,7 @@
         android:paddingTop="3dp"
         android:paddingRight="4dp"
         android:drawableRight="@drawable/bg_zk_item"
-        android:background="@drawable/bg_null"
+        android:background="@drawable/spinner_bg"
         android:textSize="16sp"
         android:gravity="center"
         android:layout_height="wrap_content"
