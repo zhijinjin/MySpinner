@@ -14,7 +14,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.zhijinjin:MySpinner:v1.0'
+	        compile 'com.github.zhijinjin:MySpinner:使用最新版本号'
 	}
 
 
