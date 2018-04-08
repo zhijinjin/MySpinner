@@ -1,6 +1,6 @@
 # MySpinner
 支持单选和多选的 下拉菜单
-![img](https://github.com/zhijinjin/MySpinner/blob/master/cFm08bV2Eu.mp4) 
+![img](https://github.com/zhijinjin/MySpinner/blob/master/gif.mp4) 
 
 Add it in your root build.gradle at the end of repositories:
 
@@ -14,7 +14,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.zhijinjin:MySpinner:v1.0.2'
+	        compile 'com.github.zhijinjin:MySpinner:v1.0.3'
 	}
 
 
