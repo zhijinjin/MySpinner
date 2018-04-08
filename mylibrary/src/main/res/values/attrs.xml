@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MySpinner">
+        <!--弹框的整体背景颜色-->
         <attr name="spinner_pop_background_color" format="color" />
+        <!--弹框中ListView分割线颜色-->
         <attr name="spinner_pop__divider_color" format="color" />
+        <!--弹框中ListView分割线高度-->
         <attr name="spinner_pop__divider_height" format="integer" />
+        <!--暂未使用-->
         <attr name="spinner_radius" format="dimension" />
-        <attr name="spinner_text_color" format="color" />
-        <attr name="spinner_width" format="dimension" />
-        <attr name="spinner_height" format="dimension" />
+        <!--取消按钮文字-->
+        <attr name="spinner_cancel_text" format="string" />
+        <!--取消按钮文字颜色-->
+        <attr name="spinner_cancel_text_color" format="color" />
+        <!--取消按钮背景颜色-->
+        <attr name="spinner_cancel_bg_color" format="color" />
+        <!--确定按钮文字-->
+        <attr name="spinner_sure_text" format="string" />
+        <!--确定按钮文字颜色-->
+        <attr name="spinner_sure_text_color" format="color" />
+        <!--确定按钮背景颜色-->
+        <attr name="spinner_sure_bg_color" format="color" />
+        <!--确定与取消两个按钮文字大小-->
+        <attr name="spinner_pop_bt_size" format="dimension" />
+        <!--item字体大小-->
+        <attr name="spinner_pop_item_size" format="dimension" />
+        <!--item字体颜色-->
+        <attr name="spinner_pop_item_text_color" format="color" />
+        <!--item选中图片-->
+        <attr name="spinner_pop_select_pic" format="reference" />
+        <!--item未选中图片-->
+        <attr name="spinner_pop_default_pic" format="reference" />
+        <!--单选还是多选-->
         <attr name="spinner_style" format="enum">
             <enum name="STYLE_SINGLE" value="1" />
             <enum name="STYLE_MULTI" value="2" />

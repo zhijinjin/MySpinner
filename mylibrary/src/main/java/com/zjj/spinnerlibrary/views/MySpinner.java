@@ -54,6 +54,28 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
     private int divider_color;
     //分割线高度 dp
     private int divider_height;
+    //取消
+    private String text_cancel;
+    //取消字体颜色
+    private int text_cancel_color;
+    //取消按钮背景颜色
+    private int bt_cancel_bg_color;
+    //确定
+    private String text_srue;
+    //确定字体颜色
+    private int text_srue_color;
+    //确定按钮背景颜色
+    private int bt_srue_bg_color;
+    //按钮字体大小
+    private float bt_text_size;
+    //item字体大小
+    private float item_text_size;
+    //item字体颜色
+    private int item_text_color;
+    //选中图片
+    private int select_drawable;
+    //没选中图片
+    private int default_drawable;
 
     public MySpinner(Context context) {
         this(context, null);
@@ -81,6 +103,17 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
             spinner_pop_background_color = a.getColor(R.styleable.MySpinner_spinner_pop_background_color , getResources().getColor(R.color.pop_bag));
             divider_color = a.getColor(R.styleable.MySpinner_spinner_pop__divider_color , 0);
             divider_height = a.getInt(R.styleable.MySpinner_spinner_pop__divider_height , 1);
+            bt_text_size = a.getDimension(R.styleable.MySpinner_spinner_pop_bt_size,16);
+            text_cancel = a.getString(R.styleable.MySpinner_spinner_cancel_text);
+            text_cancel_color = a.getColor(R.styleable.MySpinner_spinner_cancel_text_color ,  0xFF000000);
+            bt_cancel_bg_color = a.getColor(R.styleable.MySpinner_spinner_cancel_bg_color ,  0xFF808080);
+            text_srue = a.getString(R.styleable.MySpinner_spinner_sure_text);
+            text_srue_color = a.getColor(R.styleable.MySpinner_spinner_sure_text_color ,  0xFF000000);
+            bt_srue_bg_color = a.getColor(R.styleable.MySpinner_spinner_sure_bg_color ,  0xFF33aadd);
+            item_text_size = a.getDimension(R.styleable.MySpinner_spinner_pop_item_size , 16);
+            item_text_color =  a.getColor(R.styleable.MySpinner_spinner_pop_item_text_color ,  0xFF000000);
+            select_drawable = a.getResourceId(R.styleable.MySpinner_spinner_pop_select_pic,R.drawable.select_item2);
+            default_drawable = a.getResourceId(R.styleable.MySpinner_spinner_pop_default_pic,R.drawable.select_item1);
         } finally {
             a.recycle();
         }
@@ -154,6 +187,9 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
      * @param convertView
      */
     private void initConverView(View convertView){
+        adapter.setItemTextSize(item_text_size).setItemTextColor(item_text_color)
+                .setItemDefaultDrawable(default_drawable).setItemSelectDrawable(select_drawable);
+
         GradientDrawable background = (GradientDrawable) convertView.getBackground();
         background.setColor(spinner_pop_background_color);
         mList = (ListView) convertView.findViewById(R.id.listview_sp);
@@ -161,13 +197,23 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         if(mStyle==TYPE_SINGLE){
             ll.setVisibility(View.GONE);
         }else{
-            convertView.findViewById(R.id.cancel).setOnClickListener(new OnClickListener() {
+            TextView cancel = convertView.findViewById(R.id.cancel);
+            cancel.setText(text_cancel);
+            cancel.setTextSize(bt_text_size);
+            cancel.setTextColor(text_cancel_color);
+            ((GradientDrawable)cancel.getBackground()).setColor(bt_cancel_bg_color);
+            cancel.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mPopup.dismiss();
                 }
             });
-            convertView.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
+            TextView srue =  convertView.findViewById(R.id.confirm);
+            srue.setText(text_srue);
+            srue.setTextSize(bt_text_size);
+            srue.setTextColor(text_srue_color);
+            ((GradientDrawable)srue.getBackground()).setColor(bt_srue_bg_color);
+            srue.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mPopup.dismiss();

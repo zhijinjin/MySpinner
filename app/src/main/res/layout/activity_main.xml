@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="24dp"
     tools:context="com.zjj.myspinner.MainActivity">
 
     <com.zjj.spinnerlibrary.views.MySpinner
         android:id="@+id/sp_1"
-        android:layout_width="260dp"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
         android:paddingRight="4dp"
         android:drawableRight="@drawable/bg_zk_item"
         android:background="@drawable/bg_null"
@@ -17,25 +19,26 @@
         app:spinner_style="STYLE_SINGLE"
         android:textSize="16sp"
         android:gravity="center"
-        android:layout_height="55dp" />
+         />
 
     <com.zjj.spinnerlibrary.views.MySpinner
         android:layout_marginTop="20dp"
         android:id="@+id/sp_2"
-        android:layout_width="260dp"
         android:paddingRight="4dp"
         android:drawableRight="@drawable/bg_zk_item"
         android:background="@drawable/bg_null"
         android:text="下拉，多选"
         app:spinner_style="STYLE_MULTI"
         android:textSize="16sp"
+        app:spinner_sure_text="确定"
+        app:spinner_cancel_text="取消"
         android:gravity="center"
-        android:layout_height="55dp" />
+        android:layout_width="150dp"
+        android:layout_height="45dp"/>
 
     <com.zjj.spinnerlibrary.views.MySpinner
         android:layout_marginTop="20dp"
         android:id="@+id/sp_3"
-        android:layout_width="260dp"
         android:paddingRight="4dp"
         android:drawableRight="@drawable/bg_zk_item"
         android:background="@drawable/bg_null"
@@ -43,22 +46,38 @@
         app:spinner_style="STYLE_MULTI"
         android:textSize="16sp"
         android:gravity="center"
-        android:layout_height="55dp" />
+        android:layout_width="150dp"
+        android:layout_height="45dp"/>
 
     <com.zjj.spinnerlibrary.views.MySpinner
         android:layout_marginTop="20dp"
         android:id="@+id/sp_4"
-        android:layout_width="260dp"
+        android:layout_width="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingEnd="6dp"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
         android:paddingRight="4dp"
         android:drawableRight="@drawable/bg_zk_item"
         android:background="@drawable/bg_null"
         android:textSize="16sp"
         android:gravity="center"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:text="自定义弹框"
         app:spinner_pop_background_color="@color/colorAccent"
         app:spinner_pop__divider_color="@color/colorPrimary"
         app:spinner_pop__divider_height="1"
+        app:spinner_pop_bt_size="14px"
+        app:spinner_cancel_text="cancel"
+        app:spinner_cancel_text_color="#ffff00"
+        app:spinner_cancel_bg_color="#ffaaaa"
+        app:spinner_sure_text="ok"
+        app:spinner_sure_text_color="#ff2333"
+        app:spinner_sure_bg_color="#99fff0"
+        app:spinner_pop_item_size="14px"
+        app:spinner_pop_item_text_color="#00dddd"
+        app:spinner_pop_default_pic="@drawable/item_default"
+        app:spinner_pop_select_pic="@drawable/item_select"
         app:spinner_style="STYLE_MULTI"/>
 
 
