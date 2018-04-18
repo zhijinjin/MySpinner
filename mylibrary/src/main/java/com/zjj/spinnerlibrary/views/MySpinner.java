@@ -268,6 +268,13 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
     }
 
     /**
+     * 获取训中位置
+     * @return
+     */
+    public List<Integer> getSelectPositions(){
+        return adapter.getSelectPositions();
+    }
+    /**
      * 获取选中数据
      * @return
      */

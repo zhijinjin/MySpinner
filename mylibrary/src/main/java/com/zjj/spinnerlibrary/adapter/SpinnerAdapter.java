@@ -123,6 +123,16 @@ public class SpinnerAdapter  extends BaseAdapter {
         return selectList;
     }
 
+    public List<Integer> getSelectPositions(){
+        List<Integer> selectList = new ArrayList<Integer>();
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).isSelectd()){
+                selectList.add(i);
+            }
+        }
+        return selectList;
+    }
+
     class ViewHodler {
         ImageView icon;
         TextView title;
