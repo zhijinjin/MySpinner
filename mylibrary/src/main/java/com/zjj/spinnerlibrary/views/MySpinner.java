@@ -307,7 +307,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                     SpinnerModel data = mData.get(j);
                     if(null!=value&&data.getValue().equals(value)){
                         data.setSelectd(true);
-                        if(mStyle==TYPE_MULTI){
+                        if(mStyle==TYPE_SINGLE){
                             selectPosition = j;
                             break;
                         }
@@ -328,7 +328,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                     SpinnerModel data = mData.get(j);
                     if(null!=values[i]&&data.getValue().equals(values[i])){
                         data.setSelectd(true);
-                        if(mStyle==TYPE_MULTI){
+                        if(mStyle==TYPE_SINGLE){
                             selectPosition = j;
                             break;
                         }
