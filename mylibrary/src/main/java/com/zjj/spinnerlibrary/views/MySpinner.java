@@ -156,9 +156,6 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
 
     @Override
     public void onClick(View view) {
-       if(adapter==null){
-           adapter = new SpinnerAdapter(context,mStyle);
-       }
         if(mPopup==null){
             if(contentView==null){//默认样式
                 contentView = inflater.inflate(R.layout.spinner_layout, null);
@@ -306,16 +303,19 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
     public void setTextByValues(List<String> values){
         if(values!=null&&values.size()>0){
             for(String value:values){
-                for(SpinnerModel data:mData){
+                for(int j=0;j<mData.size();j++){
+                    SpinnerModel data = mData.get(j);
                     if(null!=value&&data.getValue().equals(value)){
                         data.setSelectd(true);
+                        if(mStyle==TYPE_MULTI){
+                            selectPosition = j;
+                            break;
+                        }
                     }
                 }
             }
-            if(null!=adapter){
-                adapter.setList(mData);
-                adapter.notifyDataSetChanged();
-            }
+            adapter.setList(mData);
+            adapter.notifyDataSetChanged();
             onSure();
         }
     }
@@ -324,16 +324,19 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
     public void setTextByValues(String[] values){
         if(values!=null&&values.length>0){
             for(int i=0;i<values.length;i++){
-                for(SpinnerModel data:mData){
+                for(int j=0;j<mData.size();j++){
+                    SpinnerModel data = mData.get(j);
                     if(null!=values[i]&&data.getValue().equals(values[i])){
                         data.setSelectd(true);
+                        if(mStyle==TYPE_MULTI){
+                            selectPosition = j;
+                            break;
+                        }
                     }
                 }
             }
-            if(null!=adapter){
-                adapter.setList(mData);
-                adapter.notifyDataSetChanged();
-            }
+            adapter.setList(mData);
+            adapter.notifyDataSetChanged();
             onSure();
         }
     }
@@ -353,9 +356,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                     }
                 }
                 onSure();
-                if(adapter!=null){
-                    adapter.notifyDataSetChanged();
-                }
+                adapter.notifyDataSetChanged();
                 break;
             case TYPE_SINGLE:
                 selectPosition = posi[0];
