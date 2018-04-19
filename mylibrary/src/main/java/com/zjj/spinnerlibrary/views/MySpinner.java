@@ -92,6 +92,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
             initAttrs(context, attrs);
             this.setOnClickListener(this);
             inflater = LayoutInflater.from(context);
+            adapter = new SpinnerAdapter(context,mStyle);
         }
     }
 
