@@ -301,11 +301,28 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         return selectList;
     }
 
+    //通过值设置显示
     public void setTextByValues(List<String> values){
         if(values!=null&&values.size()>0){
             for(String value:values){
                 for(SpinnerModel data:mData){
                     if(data.getValue().equals(value)){
+                        data.setSelectd(true);
+                    }
+                }
+            }
+            adapter.setList(mData);
+            adapter.notifyDataSetChanged();
+            onSure();
+        }
+    }
+
+    //通过值设置显示
+    public void setTextByValues(String[] values){
+        if(values!=null&&values.length>0){
+            for(int i=0;i<values.length;i++){
+                for(SpinnerModel data:mData){
+                    if(data.getValue().equals(values[i])){
                         data.setSelectd(true);
                     }
                 }
