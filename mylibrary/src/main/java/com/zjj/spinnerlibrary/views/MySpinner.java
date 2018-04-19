@@ -306,7 +306,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         if(values!=null&&values.size()>0){
             for(String value:values){
                 for(SpinnerModel data:mData){
-                    if(data.getValue().equals(value)){
+                    if(null!=value&&data.getValue().equals(value)){
                         data.setSelectd(true);
                     }
                 }
@@ -324,7 +324,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         if(values!=null&&values.length>0){
             for(int i=0;i<values.length;i++){
                 for(SpinnerModel data:mData){
-                    if(data.getValue().equals(values[i])){
+                    if(null!=values[i]&&data.getValue().equals(values[i])){
                         data.setSelectd(true);
                     }
                 }
@@ -352,7 +352,9 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                     }
                 }
                 onSure();
-                adapter.notifyDataSetChanged();
+                if(adapter!=null){
+                    adapter.notifyDataSetChanged();
+                }
                 break;
             case TYPE_SINGLE:
                 selectPosition = posi[0];
