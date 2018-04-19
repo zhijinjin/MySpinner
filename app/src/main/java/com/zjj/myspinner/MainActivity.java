@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
         //默认单选样式
         MySpinner sp_1 = (MySpinner)findViewById(R.id.sp_1);
         sp_1.setData(getData());
-        sp_1.setSelectPositons(new int[]{1});
+//        sp_1.setSelectPositons(new int[]{1});
 
         //默认多选样式
         MySpinner sp_2 = (MySpinner)findViewById(R.id.sp_2);
         sp_2.setData(getData());
-        sp_2.setSelectPositons(new int[]{1,2});
+//        sp_2.setSelectPositons(new int[]{1,2});
 
         //自定义弹框样式
         MySpinner sp_3 = (MySpinner)findViewById(R.id.sp_3);

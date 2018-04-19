@@ -245,9 +245,9 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
         String str = "";
         for(int i=0;i<selectData.size();i++){
             if(i==0){
-                str = selectData.get(i).getValue();
+                str = selectData.get(i).getText();
             }else{
-                str = str +"/"+selectData.get(i).getValue();
+                str = str +"/"+selectData.get(i).getText();
             }
         }
         this.setText(str);
@@ -311,7 +311,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
             case TYPE_SINGLE:
                 selectPosition = posi[0];
                 if(selectPosition<mData.size()){{
-                    this.setText(mData.get(selectPosition).getValue());
+                    this.setText(mData.get(selectPosition).getText());
                 }}
                 break;
         }
