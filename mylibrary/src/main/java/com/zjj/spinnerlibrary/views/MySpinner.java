@@ -311,8 +311,10 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                     }
                 }
             }
-            adapter.setList(mData);
-            adapter.notifyDataSetChanged();
+            if(null!=adapter){
+                adapter.setList(mData);
+                adapter.notifyDataSetChanged();
+            }
             onSure();
         }
     }
@@ -327,8 +329,10 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                     }
                 }
             }
-            adapter.setList(mData);
-            adapter.notifyDataSetChanged();
+            if(null!=adapter){
+                adapter.setList(mData);
+                adapter.notifyDataSetChanged();
+            }
             onSure();
         }
     }
