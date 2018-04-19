@@ -91,7 +91,6 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
             this.context = context;
             initAttrs(context, attrs);
             this.setOnClickListener(this);
-            adapter = new SpinnerAdapter(context,mStyle);
             inflater = LayoutInflater.from(context);
         }
     }
@@ -156,6 +155,9 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
 
     @Override
     public void onClick(View view) {
+       if(adapter==null){
+           adapter = new SpinnerAdapter(context,mStyle);
+       }
         if(mPopup==null){
             if(contentView==null){//默认样式
                 contentView = inflater.inflate(R.layout.spinner_layout, null);
@@ -285,7 +287,15 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                 selectList.add(mData.get(selectPosition));
                 break;
             case TYPE_MULTI:
-                selectList = adapter.getSelectData();
+                if(adapter==null){
+                    for(SpinnerModel model:mData){
+                        if(model.isSelectd()){
+                            selectList.add(model);
+                        }
+                    }
+                }else{
+                    selectList = adapter.getSelectData();
+                }
                 break;
         }
         return selectList;
