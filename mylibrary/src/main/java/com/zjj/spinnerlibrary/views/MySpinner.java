@@ -135,7 +135,7 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
      */
     public MySpinner setData(List<SpinnerModel>  mData){
         this.mData = mData;
-        adapter.setList(mData);
+        adapter.setList(this.mData);
         return this;
     }
 
@@ -289,6 +289,21 @@ public class MySpinner extends android.support.v7.widget.AppCompatTextView imple
                 break;
         }
         return selectList;
+    }
+
+    public void setTextByValues(List<String> values){
+        if(values!=null&&values.size()>0){
+            for(String value:values){
+                for(SpinnerModel data:mData){
+                    if(data.getValue().equals(value)){
+                        data.setSelectd(true);
+                    }
+                }
+            }
+            adapter.setList(mData);
+            adapter.notifyDataSetChanged();
+            onSure();
+        }
     }
 
     /**
